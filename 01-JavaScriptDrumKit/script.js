@@ -17,7 +17,14 @@ const keys = Array.from(document.querySelectorAll(".key"));
 
 keys.forEach((key) => {
   key.addEventListener("transitionend", removeTransition);
-  key.addEventListener("click", () => {
+  key.addEventListener("click", (e) => {
+    const x = e.offsetX;
+    const y = e.offsetY;
+    const circle = document.createElement('span');
+    circle.classList.add('circle');
+    circle.style.top = y + 'px';
+    circle.style.left = x + 'px';
+    key.appendChild(circle);
     playSound(key.dataset.key);
   });
 });
